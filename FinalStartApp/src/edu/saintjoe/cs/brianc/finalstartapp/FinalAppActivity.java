@@ -1,34 +1,66 @@
 package edu.saintjoe.cs.brianc.finalstartapp;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.google.appinventor.components.runtime.Component;
+import com.google.appinventor.components.runtime.HandlesEventDispatching;
+import com.google.appinventor.components.runtime.Button;
+import com.google.appinventor.components.runtime.Form;
+import com.google.appinventor.components.runtime.Label;
+import com.google.appinventor.components.runtime.HorizontalArrangement;
+import com.google.appinventor.components.runtime.TextBox;
 
-public class FinalAppActivity extends Activity {
+import com.google.appinventor.components.runtime.EventDispatcher;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_final_app);
-	}
+public class FinalAppActivity extends Form implements HandlesEventDispatching {
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.final_app, menu);
-		return true;
-	}
+	// Java Bridge analog to App Inventor "FinalStartApp" project
+	//   Coded by Brian Capouch
+	//   Project begun 25 December 2015
+	
+	// We begin with constants, and "global settings" variables
+	// -- This app has none for now
+	
+	// Next are the UI widget references	
+	// These objects are equivalent to "components" of App Inventor
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+	// Only two for this simple demo
+	private Button onlyButton;	
+	private Label onlyLabel;
+
+// Java Bridger apps all use $define() in place of main()
+protected void $define() {
+
+	// Code in this block is equivalent to the "Designer" part of App Inventor
+  
+	this.BackgroundColor(COLOR_WHITE);
+   
+	// Create our button
+	onlyButton = new Button(this);
+	onlyButton.Text("Please push me!!");
+
+	// And our only label
+
+	onlyLabel = new Label(this);
+   
+   
+	// Let the runtime system know which events to report to the dispatcher
+	EventDispatcher.registerEventForDelegation(this, "ButtonClick", "Click");
+ 
+} // end $define()
+
+// This method, known as a "callback" is invoked by the runtime system
+// It will only be called when a delegated event occurs
+@Override
+public boolean dispatchEvent(Component component, String id, String eventName,
+       Object[] args) {
+	
+	// This code is equivalent to the "Blocks" part of App Inventor
+	    if (component.equals(onlyButton) && eventName.equals("Click")){
+	    	onlyLabel.Text("OUCH!!");
+	        return true;
+	     } // 
+	    
+
+	    // This line is syntactically required  
+	    return true;
+} // end dispatchEvent
 }
