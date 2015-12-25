@@ -38,7 +38,6 @@ protected void $define() {
 	onlyButton.Text("Please push me!!");
 
 	// And our only label
-
 	onlyLabel = new Label(this);
    
    
@@ -55,7 +54,8 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 	
 	// This code is equivalent to the "Blocks" part of App Inventor
 	    if (component.equals(onlyButton) && eventName.equals("Click")){
-	    	onlyLabel.Text("OUCH!!");
+	    	onlyLabel.Text("OUCH!!!");
+	    	onlyButton.Text("Do It Again");
 	        return true;
 	     } // 
 	    
