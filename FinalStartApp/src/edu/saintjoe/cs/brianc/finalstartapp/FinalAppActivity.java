@@ -25,6 +25,9 @@ public class FinalAppActivity extends Form implements HandlesEventDispatching {
 	// Only two for this simple demo
 	private Button onlyButton;	
 	private Label onlyLabel;
+	
+	// Variable to control app behavior
+	boolean pristineBehavior = true;
 
 // Java Bridger apps all use $define() in place of main()
 protected void $define() {
@@ -40,7 +43,6 @@ protected void $define() {
 	// And our only label
 	onlyLabel = new Label(this);
    
-   
 	// Let the runtime system know which events to report to the dispatcher
 	EventDispatcher.registerEventForDelegation(this, "ButtonClick", "Click");
  
@@ -54,8 +56,14 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 	
 	// This code is equivalent to the "Blocks" part of App Inventor
 	    if (component.equals(onlyButton) && eventName.equals("Click")){
-	    	onlyLabel.Text("OUCH!!!");
-	    	onlyButton.Text("Do It Again");
+	    	if (pristineBehavior) {
+	    		onlyLabel.Text("OUCH!!!");
+	    		onlyButton.Text("Do It Again");
+	    	} else {
+	    		onlyLabel.Text("Ooooh!!");
+	    		onlyButton.Text("Please push me!");
+	    	}
+	    	pristineBehavior = ( pristineBehavior ? false : true );
 	        return true;
 	     } // 
 	    
