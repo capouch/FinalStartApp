@@ -1,13 +1,14 @@
 package edu.saintjoe.cs.brianc.finalstartapp;
 
+// Necesary imports
 import com.google.appinventor.components.runtime.Component;
-import com.google.appinventor.components.runtime.HandlesEventDispatching;
 import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.Label;
 import com.google.appinventor.components.runtime.HorizontalArrangement;
 import com.google.appinventor.components.runtime.TextBox;
-
+// Event-related functionality
+import com.google.appinventor.components.runtime.HandlesEventDispatching;
 import com.google.appinventor.components.runtime.EventDispatcher;
 
 public class FinalAppActivity extends Form implements HandlesEventDispatching {
@@ -55,20 +56,19 @@ public boolean dispatchEvent(Component component, String id, String eventName,
        Object[] args) {
 	
 	// This code is equivalent to the "Blocks" part of App Inventor
-	    if (component.equals(onlyButton) && eventName.equals("Click")){
-	    	if (pristineBehavior) {
-	    		onlyLabel.Text("OUCH!!!");
-	    		onlyButton.Text("Do It Again");
-	    	} else {
-	    		onlyLabel.Text("Ooooh!!");
-	    		onlyButton.Text("Please push me!");
-	    	}
-	    	pristineBehavior = ( pristineBehavior ? false : true );
-	        return true;
-	     } // 
+	if (component.equals(onlyButton) && eventName.equals("Click")){
+		if (pristineBehavior) {
+			onlyLabel.Text("OUCH!!!");
+			onlyButton.Text("Do It Again");
+	    } else {
+	    	onlyLabel.Text("Ooooh!!");
+	    	onlyButton.Text("Please push me!");
+	    }
+	pristineBehavior = ( pristineBehavior ? false : true );
+	return true;
+	} // End click handler for onlyButton
 	    
-
-	    // This line is syntactically required  
-	    return true;
-} // end dispatchEvent
-}
+	// This line is syntactically required  
+	return true;
+	} // end dispatchEvent
+} // end class
