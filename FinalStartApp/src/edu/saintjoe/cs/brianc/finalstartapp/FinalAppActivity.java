@@ -1,15 +1,18 @@
 package edu.saintjoe.cs.brianc.finalstartapp;
 
-// Necessary imports
+// Necessary imports for every project
 import com.google.appinventor.components.runtime.Component;
-import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.Form;
+//Event-related functionality
+import com.google.appinventor.components.runtime.HandlesEventDispatching;
+import com.google.appinventor.components.runtime.EventDispatcher;
+
+// Imports for components needed by this app
+import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.Label;
 import com.google.appinventor.components.runtime.HorizontalArrangement;
 import com.google.appinventor.components.runtime.TextBox;
-// Event-related functionality
-import com.google.appinventor.components.runtime.HandlesEventDispatching;
-import com.google.appinventor.components.runtime.EventDispatcher;
+
 
 public class FinalAppActivity extends Form implements HandlesEventDispatching {
 
