@@ -56,7 +56,9 @@ public boolean dispatchEvent(Component component, String id, String eventName,
        Object[] args) {
 	
 	// This code is equivalent to the "Blocks" part of App Inventor
+	//   i.e. this is onlyButton.click
 	if (component.equals(onlyButton) && eventName.equals("Click")){
+		// Select which display
 		if (pristineBehavior) {
 			onlyLabel.Text("OUCH!!!");
 			onlyButton.Text("Do It Again");
@@ -64,11 +66,14 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 	    	onlyLabel.Text("Ooooh!!");
 	    	onlyButton.Text("Please push me!");
 	    }
+	// Toggle display mode
 	pristineBehavior = ( pristineBehavior ? false : true );
+	
+	//  All is well
 	return true;
 	} // End click handler for onlyButton
-	    
-	// This line is syntactically required  
+	
+	// One complete event handled  
 	return true;
 	} // end dispatchEvent
 } // end class
