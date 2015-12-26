@@ -56,12 +56,12 @@ public boolean dispatchEvent(Component component, String id, String eventName,
        Object[] args) {
 	
 	// This code is equivalent to the "Blocks" part of App Inventor
-	//   i.e. this is onlyButton.click
+	//   i.e. this is "when onlyButton.Click do"
 	if (component.equals(onlyButton) && eventName.equals("Click")){
-		// Select which display
+		// Present alternate displays
 		if (pristineBehavior) {
 			onlyLabel.Text("OUCH!!!");
-			onlyButton.Text("Do It Again");
+			onlyButton.Text("Push Again");
 	    } else {
 	    	onlyLabel.Text("Ooooh!!");
 	    	onlyButton.Text("Please push me!");
