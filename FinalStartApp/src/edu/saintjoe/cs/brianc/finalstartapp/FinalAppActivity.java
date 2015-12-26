@@ -1,6 +1,6 @@
 package edu.saintjoe.cs.brianc.finalstartapp;
 
-// Necesary imports
+// Necessary imports
 import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.Form;
@@ -49,8 +49,8 @@ protected void $define() {
  
 } // end $define()
 
-// This method, known as a "callback" is invoked by the runtime system
-// It will only be called when a delegated event occurs
+// This method runs asynchronously 
+// It's called each time a registered event occurs
 @Override
 public boolean dispatchEvent(Component component, String id, String eventName,
        Object[] args) {
