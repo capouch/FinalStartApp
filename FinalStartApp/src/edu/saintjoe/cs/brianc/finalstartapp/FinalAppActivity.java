@@ -92,15 +92,11 @@ protected void $define() {
 public boolean dispatchEvent(Component component, String id, String eventName,
        Object[] args) {
 	
-	int i; // temporary integer storage
-	String s; // Ditto for string
-	
 	// This code is equivalent to the "Blocks" part of App Inventor
 	//   i.e. this is "when onlyButton.Click do"
 	if (component.equals(calcButton) && eventName.equals("Click")){
 		// Do some minimal little thing
-		i = Integer.parseInt(numberInput.Text());
-		resultLabel.Text(Integer.toString(incrementIt(i)));
+		resultLabel.Text(Integer.toString(incrementIt(Integer.parseInt(numberInput.Text()))));
 		//  All is well
 		return true;
 		} // End click handler for onlyButton
