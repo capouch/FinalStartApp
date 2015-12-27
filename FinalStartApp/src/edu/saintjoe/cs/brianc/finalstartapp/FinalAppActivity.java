@@ -93,7 +93,8 @@ public boolean dispatchEvent(Component component, String id, String eventName,
        Object[] args) {
 	
 	// This code is equivalent to the "Blocks" part of App Inventor
-	//   i.e. this is "when onlyButton.Click do"
+	
+	//   e.g. this is "when calcButton.Click do"
 	if (component.equals(calcButton) && eventName.equals("Click")){
 		// Do some minimal little thing
 		resultLabel.Text(Integer.toString(incrementIt(Integer.parseInt(numberInput.Text()))));
