@@ -98,11 +98,14 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 	if (component.equals(calcButton) && eventName.equals("Click")){
 		// Do some minimal little thing
 		resultLabel.Text(Integer.toString(incrementIt(Integer.parseInt(numberInput.Text()))));
-		//  All is well
+		// Clear input box for next operation
+		numberInput.Text("");
+		//  All is well - each handler has its own result
 		return true;
 		} // End click handler for onlyButton
+	
 	// One complete event handled  
-	return true;
+	return false;
 	
 	} // end dispatchEvent
 
