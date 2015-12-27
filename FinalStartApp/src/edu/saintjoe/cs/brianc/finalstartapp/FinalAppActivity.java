@@ -11,14 +11,16 @@ import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.Label;
 import com.google.appinventor.components.runtime.HorizontalArrangement;
+import com.google.appinventor.components.runtime.VerticalArrangement;
 import com.google.appinventor.components.runtime.TextBox;
 
 
 public class FinalAppActivity extends Form implements HandlesEventDispatching {
 
 	// Java Bridge analog to App Inventor "FinalStartApp" project
-	//   Coded by Brian Capouch
-	//   Project begun 25 December 2015
+	//  Coded by Brian Capouch
+	//  Project begun 25 December 2015
+	//    -- first translation effort begun 27 Dec
 	
 	// We begin with constants, and "global settings" variables
 	// -- This app has none for now
@@ -26,12 +28,21 @@ public class FinalAppActivity extends Form implements HandlesEventDispatching {
 	// Next are the UI widget references	
 	// These objects are equivalent to "components" of App Inventor
 
-	// Only two for this simple demo
-	private Button onlyButton;	
-	private Label onlyLabel;
+	// Vertical arrangement to enforce AI screen layout
+	private VerticalArrangement screenLayout;
 	
-	// Variable to control app behavior
-	boolean pristineBehavior = true;
+	// Two horizontal arrangements
+	private HorizontalArrangement horizontalArrangement1, horizontalArrangement2;
+	
+	// Per our app's Designer screen
+	private Label promptLabel, resultLabel, listContentsLabel;
+	// Only two for this simple demo
+	private Button calcButton, listAddButton, listShowerButton, sumButton;
+	// One TextBox for input
+	private TextBox numberInput;
+
+	// Global variables have to go here, too
+	int[] numberList;
 
 // Java Bridger apps all use $define() in place of main()
 protected void $define() {
@@ -39,13 +50,36 @@ protected void $define() {
 	// Code in this block is equivalent to the "Designer" part of App Inventor
   
 	this.BackgroundColor(COLOR_WHITE);
-   
-	// Create our button
-	onlyButton = new Button(this);
-	onlyButton.Text("Please push me!!");
+	
+	// Top-level container for entire app
+	screenLayout = new VerticalArrangement(this);// By convention, create container components first
+	
+	// First "row" is input widget
+	horizontalArrangement1 = new HorizontalArrangement(screenLayout);
+	
+	promptLabel = new Label(horizontalArrangement1);
+	promptLabel.Text("Enter number: ");
+	numberInput = new TextBox(horizontalArrangement1);
+	numberInput.NumbersOnly(true);
+	
+	// calcButton and resultLabel get their own lines
+	calcButton = new Button(screenLayout);
+	calcButton.Text("Calc");
+	
+	resultLabel = new Label(screenLayout);
 
-	// And our only label
-	onlyLabel = new Label(this);
+	// Bunch together the list-related functionality
+	horizontalArrangement2 = new HorizontalArrangement(screenLayout);
+	// Add list-related buttons
+	listAddButton = new Button(horizontalArrangement2);
+	listAddButton.Text("Add to List");
+	listShowerButton = new Button(horizontalArrangement2);
+	listShowerButton.Text("Show List");
+	sumButton = new Button(horizontalArrangement2);
+	sumButton.Text("Compute List Sum");
+	
+	// Display list contents below everything else
+	listContentsLabel = new Label(screenLayout);
    
 	// Let the runtime system know which events to report to the dispatcher
 	EventDispatcher.registerEventForDelegation(this, "ButtonClick", "Click");
@@ -60,21 +94,13 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 	
 	// This code is equivalent to the "Blocks" part of App Inventor
 	//   i.e. this is "when onlyButton.Click do"
-	if (component.equals(onlyButton) && eventName.equals("Click")){
-		// Present alternate displays
-		if (pristineBehavior) {
-			onlyLabel.Text("OUCH!!!");
-			onlyButton.Text("Push Again");
-	    } else {
-	    	onlyLabel.Text("Ooooh!!");
-	    	onlyButton.Text("Please push me!");
-	    }
-	// Toggle display mode
-	pristineBehavior = ( pristineBehavior ? false : true );
-	
-	//  All is well
-	return true;
-	} // End click handler for onlyButton
+	if (component.equals(calcButton) && eventName.equals("Click")){
+		// Do some minimal little thing
+		resultLabel.Text("You clicked!");
+		listContentsLabel.Text("Clicked indeed");
+		//  All is well
+		return true;
+		} // End click handler for onlyButton
 	
 	// One complete event handled  
 	return true;
