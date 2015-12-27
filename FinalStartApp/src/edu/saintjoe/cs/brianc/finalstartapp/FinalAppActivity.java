@@ -108,6 +108,7 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 		return true;
 		} // End click handler for calcButton
 	
+	// when listAddButton.click do
 	if (component.equals(listAddButton) && eventName.equals("Click")){
 		// Add input value to list
 		// Note: we don't check for list overflow (yet)!!!!
@@ -115,9 +116,12 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 		numberInput.Text("");
 		}
 	
+	// when listShowerButton.click do
 	if (component.equals(listShowerButton) && eventName.equals("Click")){
 		showListContents();
 		}
+	
+
 	// One complete event handled  
 	return false;
 	
