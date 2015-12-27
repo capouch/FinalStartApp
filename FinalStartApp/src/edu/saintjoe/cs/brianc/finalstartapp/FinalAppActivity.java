@@ -23,7 +23,7 @@ public class FinalAppActivity extends Form implements HandlesEventDispatching {
 	//    -- first translation effort begun 27 Dec
 	
 	// We begin with constants, and "global settings" variables
-	// -- This app has none for now
+	final int ARRAY_SIZE=20;
 	
 	// Next are the UI widget references	
 	// These objects are equivalent to "components" of App Inventor
@@ -43,12 +43,16 @@ public class FinalAppActivity extends Form implements HandlesEventDispatching {
 
 	// Global variables have to go here, too
 	int[] numberList;
+	int listIndex = 0;
 
 // Java Bridger apps all use $define() in place of main()
 protected void $define() {
 
 	// Code in this block is equivalent to the "Designer" part of App Inventor
   
+	// Our list needs to be initialized
+	numberList = new int[ARRAY_SIZE];
+	
 	this.BackgroundColor(COLOR_WHITE);
 	
 	// Top-level container for entire app
@@ -102,8 +106,18 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 		numberInput.Text("");
 		//  All is well - each handler has its own result
 		return true;
-		} // End click handler for onlyButton
+		} // End click handler for calcButton
 	
+	if (component.equals(listAddButton) && eventName.equals("Click")){
+		// Add input value to list
+		// Note: we don't check for list overflow (yet)!!!!
+		numberList[listIndex++] = Integer.parseInt(numberInput.Text());
+		numberInput.Text("");
+		}
+	
+	if (component.equals(listShowerButton) && eventName.equals("Click")){
+		showListContents();
+		}
 	// One complete event handled  
 	return false;
 	
@@ -112,5 +126,14 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 // Here are service routines
 int incrementIt (int input) {
 	return ++input;
+	}
+
+void showListContents() {
+	String display;
+	display = "Lucky Luke's Lilting List\n";
+	for(int i= 0; i < listIndex; i++)
+		// Put together string first, then display it
+		display = display + Integer.toString(numberList[i]) + "\n";
+	listContentsLabel.Text(display);
 	}
 } // end class
