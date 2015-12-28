@@ -29,6 +29,7 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 	// These objects are equivalent to "components" of App Inventor
 
 	// Vertical arrangement to enforce AI screen layout
+	// This is the only component not in the AI version
 	private VerticalArrangement screenLayout;
 	
 	// Two horizontal arrangements
@@ -36,9 +37,7 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 	
 	// Per our app's Designer screen
 	private Label promptLabel, resultLabel, listContentsLabel;
-	// Only two for this simple demo
 	private Button calcButton, listAddButton, listShowerButton, sumButton;
-	// One TextBox for input
 	private TextBox numberInput;
 
 	// Global variables have to go here, too
@@ -50,7 +49,7 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 
 	// Code in this block is equivalent to the "Designer" part of App Inventor
   
-	// Our list needs to be initialized
+	// Our list needs to be instantiated
 	numberList = new int[ARRAY_SIZE];
 	
 	this.BackgroundColor(COLOR_WHITE);
@@ -61,6 +60,7 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 	// First "row" is input widget
 	horizontalArrangement1 = new HorizontalArrangement(screenLayout);
 	
+	// Add components
 	promptLabel = new Label(horizontalArrangement1);
 	promptLabel.Text("Enter number: ");
 	numberInput = new TextBox(horizontalArrangement1);
@@ -72,7 +72,7 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 	
 	resultLabel = new Label(screenLayout);
 
-	// Bunch together the list-related functionality
+	// Group together the list-related functionality
 	horizontalArrangement2 = new HorizontalArrangement(screenLayout);
 	// Add list-related buttons
 	listAddButton = new Button(horizontalArrangement2);
@@ -82,11 +82,13 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 	sumButton = new Button(horizontalArrangement2);
 	sumButton.Text("Compute List Sum");
 	
-	// Display list contents below everything else
+	// Display list label below everything else
 	listContentsLabel = new Label(screenLayout);
    
 	// Let the runtime system know which events to report to the dispatcher
 	EventDispatcher.registerEventForDelegation(this, "ButtonClick", "Click");
+	
+	// Once control arrives here the app will launch and wait for events
  
   } // end $define()
 
@@ -97,9 +99,9 @@ public class Screen1 extends Form implements HandlesEventDispatching {
        Object[] args) {
 	
 	// This section is equivalent to the "Blocks" part of App Inventor
-	// Look for proper event/component combination
+	// It consists of event handlers and "service routines"
 	
-	//   e.g. this is "when calcButton.Click do"
+	//  when calcButton.Click do
 	if (component.equals(calcButton) && eventName.equals("Click")){
 		// Convert string -> run incrementIt -> convert back -> Display
 		resultLabel.Text(Integer.toString(incrementIt(Integer.parseInt(numberInput.Text()))));
@@ -115,6 +117,7 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 		// Note: we don't check for list overflow (yet)!!!!
 		
 		// Check to see if box is empty
+		// There are other types of bad input it doesn't check for (e.g. '-' or '.')
 		if (numberInput.Text().equals("")) return true;
 		
 		// Add value from input after converting to int
