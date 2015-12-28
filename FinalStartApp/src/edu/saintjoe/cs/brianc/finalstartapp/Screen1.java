@@ -20,7 +20,7 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 	// Java Bridge analog to App Inventor "FinalStartApp" project
 	//  Coded by Brian Capouch
 	//  Project begun 25 December 2015
-	//    -- first translation effort begun 27 Dec
+	//    -- "Finished" version 27 Dec
 	
 	// We begin with constants, and "global settings" variables
 	final int ARRAY_SIZE=20;
@@ -47,7 +47,7 @@ public class Screen1 extends Form implements HandlesEventDispatching {
   // Java Bridger apps all use $define() in place of main()
   protected void $define() {
 
-	// Code in this block is equivalent to the "Designer" part of App Inventor
+	// Code in this method is equivalent to the "Designer" part of App Inventor
   
 	// Our list needs to be instantiated
 	numberList = new int[ARRAY_SIZE];
@@ -74,6 +74,7 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 
 	// Group together the list-related functionality
 	horizontalArrangement2 = new HorizontalArrangement(screenLayout);
+	
 	// Add list-related buttons
 	listAddButton = new Button(horizontalArrangement2);
 	listAddButton.Text("Add to List");
@@ -98,8 +99,8 @@ public class Screen1 extends Form implements HandlesEventDispatching {
   public boolean dispatchEvent(Component component, String id, String eventName,
        Object[] args) {
 	
-	// This section is equivalent to the "Blocks" part of App Inventor
-	// It consists of event handlers and "service routines"
+	//  From here down is equivalent to the "Blocks" part of App Inventor
+	// It consists of event handlers, procedures, functions
 	
 	//  when calcButton.Click do
 	if (component.equals(calcButton) && eventName.equals("Click")){
@@ -139,14 +140,17 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 	
 	} // end dispatchEvent
 
-  // Here are procedures and functions
+  // Procedures and functions
   int incrementIt (int input) {
 	return ++input;
 	}
 
   void showListContents() {
+	// Local variable
 	String display;
+	
 	display = "Lucky Luke's Lilting List\n";
+	// "for" is a type of while loop
 	for(int i= 0; i < listIndex; i++)
 		// Put together string first, then display it
 		display = display + Integer.toString(numberList[i]) + "\n";
