@@ -54,9 +54,9 @@ protected void $define() {
 	numberList = new int[ARRAY_SIZE];
 	
 	this.BackgroundColor(COLOR_WHITE);
-	
+		
 	// Top-level container for entire app
-	screenLayout = new VerticalArrangement(this);// By convention, create container components first
+	screenLayout = new VerticalArrangement(this);
 	
 	// First "row" is input widget
 	horizontalArrangement1 = new HorizontalArrangement(screenLayout);
@@ -100,7 +100,7 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 	
 	//   e.g. this is "when calcButton.Click do"
 	if (component.equals(calcButton) && eventName.equals("Click")){
-		// Do some minimal little thing
+		// Convert string -> run incrementIt -> convert back -> Display
 		resultLabel.Text(Integer.toString(incrementIt(Integer.parseInt(numberInput.Text()))));
 		// Clear input box for next operation
 		numberInput.Text("");
