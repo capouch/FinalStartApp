@@ -96,7 +96,8 @@ protected void $define() {
 public boolean dispatchEvent(Component component, String id, String eventName,
        Object[] args) {
 	
-	// This code is equivalent to the "Blocks" part of App Inventor
+	// This section is equivalent to the "Blocks" part of App Inventor
+	// Look for proper event/component combination
 	
 	//   e.g. this is "when calcButton.Click do"
 	if (component.equals(calcButton) && eventName.equals("Click")){
@@ -104,7 +105,7 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 		resultLabel.Text(Integer.toString(incrementIt(Integer.parseInt(numberInput.Text()))));
 		// Clear input box for next operation
 		numberInput.Text("");
-		//  All is well - each handler has its own result
+		//  Indicate that the event has been handled
 		return true;
 		} // End click handler for calcButton
 	
@@ -112,25 +113,30 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 	if (component.equals(listAddButton) && eventName.equals("Click")){
 		// Add input value to list
 		// Note: we don't check for list overflow (yet)!!!!
+		
+		// Check to see if box is empty
 		if (numberInput.Text().equals("")) return true;
+		
+		// Add value from input after converting to int
 		numberList[listIndex++] = Integer.parseInt(numberInput.Text());
+		// Clear widget for next use
 		numberInput.Text("");
 		return true;
 		}
 	
 	// when listShowerButton.click do
 	if (component.equals(listShowerButton) && eventName.equals("Click")){
+		// Just like the AI version!!
 		showListContents();
 		return true;
 		}
-	
 
 	// If we got here nobody handled the event  
 	return false;
 	
 	} // end dispatchEvent
 
-// Here are service routines
+// Here are procedures and functions
 int incrementIt (int input) {
 	return ++input;
 	}
