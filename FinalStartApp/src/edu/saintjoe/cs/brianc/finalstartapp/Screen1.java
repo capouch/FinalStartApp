@@ -115,15 +115,17 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 		if (numberInput.Text().equals("")) return true;
 		numberList[listIndex++] = Integer.parseInt(numberInput.Text());
 		numberInput.Text("");
+		return true;
 		}
 	
 	// when listShowerButton.click do
 	if (component.equals(listShowerButton) && eventName.equals("Click")){
 		showListContents();
+		return true;
 		}
 	
 
-	// One complete event handled  
+	// If we got here nobody handled the event  
 	return false;
 	
 	} // end dispatchEvent
