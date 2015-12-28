@@ -45,8 +45,8 @@ public class Screen1 extends Form implements HandlesEventDispatching {
 	int[] numberList;
 	int listIndex = 0;
 
-// Java Bridger apps all use $define() in place of main()
-protected void $define() {
+  // Java Bridger apps all use $define() in place of main()
+  protected void $define() {
 
 	// Code in this block is equivalent to the "Designer" part of App Inventor
   
@@ -88,12 +88,12 @@ protected void $define() {
 	// Let the runtime system know which events to report to the dispatcher
 	EventDispatcher.registerEventForDelegation(this, "ButtonClick", "Click");
  
-} // end $define()
+  } // end $define()
 
-// This method runs asynchronously 
-// It's called each time a registered event occurs
-@Override
-public boolean dispatchEvent(Component component, String id, String eventName,
+  // This method runs asynchronously 
+  // It's called each time a registered event occurs
+  @Override
+  public boolean dispatchEvent(Component component, String id, String eventName,
        Object[] args) {
 	
 	// This section is equivalent to the "Blocks" part of App Inventor
@@ -136,12 +136,12 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 	
 	} // end dispatchEvent
 
-// Here are procedures and functions
-int incrementIt (int input) {
+  // Here are procedures and functions
+  int incrementIt (int input) {
 	return ++input;
 	}
 
-void showListContents() {
+  void showListContents() {
 	String display;
 	display = "Lucky Luke's Lilting List\n";
 	for(int i= 0; i < listIndex; i++)
